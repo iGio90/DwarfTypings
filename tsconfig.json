@@ -5,6 +5,6 @@
         "noImplicitUseStrict": true
     },
     "files": [
-        "api.d.ts"
+        "index.d.ts"
     ]
 }
