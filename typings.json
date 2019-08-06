@@ -1,0 +1,9 @@
+{
+  "name": "Dwarf",
+  "homepage": "http://www.giovanni-rocca.com/Dwarf",
+  "ambient": true,
+  "version": "1.0.0",
+  "files": [
+    "api.d.ts"
+  ]
+}
