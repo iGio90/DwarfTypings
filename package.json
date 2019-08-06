@@ -1,0 +1,15 @@
+{
+  "name": "dwarf-typings",
+  "version": "1.0.0",
+  "description": "Typescript typings for Dwarf JavaScript API",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {},
+  "author": "Giovanni Rocca",
+  "license": "LICENSE.md",
+  "bugs": {},
+  "homepage": "http://www.giovanni-rocca.com/Dwarf",
+  "devDependencies": {
+    "typescript": "^2.0.3"
+  }
+}
