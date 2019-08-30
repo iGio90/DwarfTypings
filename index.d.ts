@@ -7,12 +7,12 @@ declare function backtrace(context?: CpuContext): DebugSymbol[] | null;
  * Enumerate exports for the given module name or pointer
  * @param module an hex/int address or string name
  */
-declare function enumerateExports(module: any): ModuleExportDetails[];
+declare function enumerateExports(module: any): Array<ModuleExportDetails>;
 /**
  * Enumerate imports for the given module name or pointer
  * @param module an hex/int address or string name
  */
-declare function enumerateImports(module);
+declare function enumerateImports(module): Array<ModuleExportDetails>;
 /**
  * Enumerate java classes
  * @param useCache false by default
@@ -25,12 +25,12 @@ declare function enumerateJavaMethods(className: string): void;
 /**
  * Enumerate loaded modules
  */
-declare function enumerateModules();
+declare function enumerateModules(fillInformation?: boolean);
 /**
  * Enumerate all information about the module (imports / exports / symbols)
- * @param module object from frida-gum
+ * @param fridaModule object from frida-gum
  */
-declare function enumerateModuleInfo(module);
+declare function enumerateModuleInfo(fridaModule: Module | string): Module;
 /**
  * Enumerate all mapped ranges
  */
@@ -39,7 +39,7 @@ declare function enumerateRanges(): RangeDetails[];
  * Enumerate symbols for the given module name or pointer
  * @param module an hex/int address or string name
  */
-declare function enumerateSymbols(module);
+declare function enumerateSymbols(module): Array<ModuleSymbolDetails>;
 /**
  * Evaluate javascript. Used from the UI to inject javascript code into the process
  * @param w
@@ -90,7 +90,7 @@ declare function getInstruction(address);
 /**
  * Return a RangeDetails object or null for the requested pointer
  */
-declare function getRange(pt): RangeDetails | null;
+declare function getRange(address: any): RangeDetails | null;
 /**
  * Return DebugSymbol or null for the given pointer
  */
@@ -307,6 +307,10 @@ declare function startNativeTracer(callback);
  * Stop the java tracer
  */
 declare function stopJavaTracer(): boolean;
+/**
+ * start strace
+ */
+declare function strace(callback): boolean;
 /**
  * Write the given hex string or ArrayBuffer into the given address
  */
