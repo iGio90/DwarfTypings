@@ -23,6 +23,19 @@ declare function enumerateJavaClasses(useCache?);
  */
 declare function enumerateJavaMethods(className: string): void;
 /**
+ * Enumerate modules for ObjC inspector panel
+ */
+declare function enumerateObjCModules(className: string): void;
+/**
+ * Enumerate objc classes
+ * @param useCache false by default
+ */
+declare function enumerateObjCClasses(moduleName: string);
+/**
+ * Enumerate method for the given class
+ */
+declare function enumerateObjCMethods(className: string): void;
+/**
  * Enumerate loaded modules
  */
 declare function enumerateModules(fillInformation?: boolean);
