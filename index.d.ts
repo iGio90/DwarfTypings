@@ -245,7 +245,7 @@ declare function putModuleInitializationBreakpoint(moduleName: string): boolean;
  * @param flags
  * @param callback
  */
-declare function putWatchpoin;
+declare function putWatchpoint(address: any, flags: string | number, callback?: Function);
 /**
  * A shortcut and secure way to read a string from a pointer with frida on any os
  * @return the string pointed by address until termination or optional length
