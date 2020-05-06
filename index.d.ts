@@ -10,38 +10,42 @@ declare function backtrace(context?: CpuContext): DebugSymbol[] | null;
 declare function enumerateExports(module: any): Array<ModuleExportDetails>;
 /**
  * Enumerate imports for the given module name or pointer
- * @param module an hex/int address or string name
+ * @param module: an hex/int address or string name
  */
 declare function enumerateImports(module): Array<ModuleExportDetails>;
 /**
  * Enumerate java classes
- * @param useCache false by default
+ * @param useCache: false by default
  */
 declare function enumerateJavaClasses(useCache?);
 /**
- * Enumerate method for the given class
+ * Enumerate method for the given class name
+ * @param className: the name of the class
  */
 declare function enumerateJavaMethods(className: string): void;
 /**
  * Enumerate modules for ObjC inspector panel
  */
-declare function enumerateObjCModules(className: string): void;
+declare function enumerateObjCModules(): void;
 /**
- * Enumerate objc classes
- * @param useCache false by default
+ * Enumerate ObjC classes in the given module
+ * @param moduleName: the name of the module
  */
 declare function enumerateObjCClasses(moduleName: string);
 /**
- * Enumerate method for the given class
+ * Enumerate ObjC methods for the given class
+ * @param className: the name of the class
  */
 declare function enumerateObjCMethods(className: string): void;
 /**
  * Enumerate loaded modules
+ * @param fillInformation: optional bool, default false.
+ * When true, it will enumerate import/exports/symbols of modules
  */
 declare function enumerateModules(fillInformation?: boolean);
 /**
  * Enumerate all information about the module (imports / exports / symbols)
- * @param fridaModule object from frida-gum
+ * @param fridaModule: object from frida-gum
  */
 declare function enumerateModuleInfo(fridaModule: Module | string): Module;
 /**
@@ -50,24 +54,24 @@ declare function enumerateModuleInfo(fridaModule: Module | string): Module;
 declare function enumerateRanges(): RangeDetails[];
 /**
  * Enumerate symbols for the given module name or pointer
- * @param module an hex/int address or string name
+ * @param module: an hex/int address or string name
  */
 declare function enumerateSymbols(module): Array<ModuleSymbolDetails>;
 /**
  * Evaluate javascript. Used from the UI to inject javascript code into the process
- * @param w
+ * @param jsCode: the code to evaluate
  */
-declare function evaluate(w);
+declare function evaluate(jsCode: string);
 /**
  * Evaluate javascript. Used from the UI to inject javascript code into the process
- * @param w
+ * @param jsFnc: the javascript string to evaluate
  */
-declare function evaluateFunction(w);
+declare function evaluateFunction(jsFnc: string);
 /**
  * Evaluate any input and return a NativePointer
- * @param w
+ * @param pointer: a number/string
  */
-declare function evaluatePtr(w: any): NativePointer;
+declare function evaluatePtr(pointer: any): NativePointer;
 /**
  * Shortcut to quickly retrieve an export
  * ```javascript
@@ -88,7 +92,6 @@ declare function findModule(module: any): Module | Module[] | null;
 declare function findSymbol(pattern);
 /**
  * get telescope information for the given pointer argument
- * @param p: pointer
  */
 declare function getAddressTs(p);
 /**
@@ -115,8 +118,8 @@ declare function getSymbolByAddress(pt): DebugSymbol | null;
  *     console.log('hello from:', this.className, this.method);
  * })
  * ```
- * @param className
- * @param callback
+ * @param className: the class name
+ * @param callback: a function callback
  */
 declare function hookAllJavaMethods(className: string, callback: Function): boolean;
 /**
@@ -126,8 +129,8 @@ declare function hookAllJavaMethods(className: string, callback: Function): bool
  *     console.log('target is being loaded');
  * })
  * ```
- * @param className
- * @param callback
+ * @param className: the class name
+ * @param callback: a function callback
  */
 declare function hookClassLoaderClassInitialization(className: string, callback: Function): boolean;
 /**
@@ -137,8 +140,8 @@ declare function hookClassLoaderClassInitialization(className: string, callback:
  *     console.log('activity created');
  * })
  * ```
- * @param className
- * @param callback
+ * @param className: the class name
+ * @param callback: a function callback
  */
 declare function hookJavaConstructor(className: string, callback: Function): boolean;
 /**
@@ -154,8 +157,8 @@ declare function hookJavaConstructor(className: string, callback: Function): boo
  *     }
  * })
  * ```
- * @param targetClassMethod
- * @param callback
+ * @param targetClassMethod: class name and method
+ * @param callback: a function callback
  */
 declare function hookJavaMethod(targetClassMethod: string, callback: Function): boolean;
 /**
@@ -165,8 +168,8 @@ declare function hookJavaMethod(targetClassMethod: string, callback: Function): 
  *     console.log('libtarget is being loaded');
  * });
  * ```
- * @param moduleName
- * @param callback
+ * @param moduleName: the name of the module
+ * @param callback: a function callback
  */
 declare function hookModuleInitialization(moduleName: string, callback: Function): boolean;
 /**
@@ -242,7 +245,7 @@ declare function putModuleInitializationBreakpoint(moduleName: string): boolean;
  * @param flags
  * @param callback
  */
-declare function putWatchpoint(address: any, flags: string, callback?: Function);
+declare function putWatchpoin;
 /**
  * A shortcut and secure way to read a string from a pointer with frida on any os
  * @return the string pointed by address until termination or optional length
@@ -321,7 +324,7 @@ declare function startNativeTracer(callback);
  */
 declare function stopJavaTracer(): boolean;
 /**
- * start strace
+ * start syscall tracing
  */
 declare function strace(callback): boolean;
 /**
