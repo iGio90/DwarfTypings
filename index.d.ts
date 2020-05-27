@@ -303,7 +303,7 @@ declare function setData(key, data);
 /**
  * Start the java tracer on the given classes
  */
-declare function startJavaTracer(classes: string[], callback: Function);
+declare function startJavaTracer(classes: string[], callback: Function | object);
 /**
  * Start the native tracer on the current thread
  * ```javascript
@@ -325,6 +325,12 @@ declare function startNativeTracer(callback);
 declare function stopJavaTracer(): boolean;
 /**
  * start syscall tracing
+ * strace(function() {
+ *     console.log(this.context.x0);
+ *     if (1 === 1) {
+ *         this.stop();
+ *     }
+ * });
  */
 declare function strace(callback): boolean;
 /**
