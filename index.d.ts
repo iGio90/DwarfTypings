@@ -114,6 +114,14 @@ declare namespace ELF_File {
         const SH_TYPE_NAME: Object;
     }
 }
+
+declare interface NativeTracerCallbacks {
+    onInstruction?: Function;
+    onCall?: Function;
+    onJump?: Function;
+    onReturn?: Function;
+    onPrivilege?: Function;
+}
 /**
  * Shortcut to retrieve native backtrace
  * ```javascript
@@ -522,9 +530,30 @@ declare function startJavaTracer(classes: string[], callback: Function | object)
  *         this.stop();
  *     }
  * });
+ * startNativeTracer({
+ *      onInstruction: function () {
+ *          console.log('onInstruction:', this.instruction.toString());
+ *      },
+ *      onCall: function () {
+ *          console.log('call:', this.instruction.toString());
+ *      },
+ *      onReturn: function () {
+ *          console.log('onReturn:', this.instruction.toString());
+ *      },
+ *      onJump: function () {
+ *          console.log('onJump:', this.instruction.toString());
+ *          console.log(JSON.stringify(this.context));
+ *          if (this.context.pc.toInt32() === 0xdeadbeef) {
+ *              this.stop();
+ *          }
+ *      },
+ *      onPrivilege: function () {
+ *          console.log('privilege call:', this.instruction.toString());
+ *      }
+ * })
  * ```
  */
-declare function startNativeTracer(callback);
+declare function startNativeTracer(callback: Function | NativeTracerCallbacks);
 /**
  * Stop the java tracer
  * ```javascript
